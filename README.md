@@ -1,2 +1,2 @@
 # NandToTetris
- 
+Building up a (simulated) computer from NAND gates. I didn't quite make it all the way to tetris yet: went through registers and ALU to CPU. You can see some images of the architecture and instruction set [here](https://www.google.com/search?sca_esv=570352775&sxsrf=AM9HkKnlkR3_7FjXY3htTl4e81n0LO-KLQ:1696350574746&q=nand+to+tetris+instructions&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjdiLCrptqBAxWhFjQIHV9ADRkQ0pQJegQIChAB&biw=1681&bih=964&dpr=1#imgrc=tbpOZiaiP1bjKM). This is a very fun project!
