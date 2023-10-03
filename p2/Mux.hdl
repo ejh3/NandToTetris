@@ -1,0 +1,21 @@
+// File: projects/p2/Mux.hdl
+// This file is part of the CSE 390B
+// project series, adapted from the
+// Nand2Tetris project.
+
+/** 
+ * Multiplexor:
+ * out = a if sel == 0
+ *       b otherwise
+ */
+
+CHIP Mux {
+    IN a, b, sel;
+    OUT out;
+
+    PARTS:
+    Not(in=sel, out=notsel);
+    And(a=sel, b=b, out=x);
+    And(a=notsel, b=a, out=y);
+    Or(a=x, b=y, out=out);
+}

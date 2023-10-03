@@ -1,0 +1,26 @@
+// File: projects/p4/normal/PC.hdl
+// This file is part of the CSE 390B
+// project series, adapted from the
+// Nand2Tetris project.
+
+/**
+ * A 16-bit counter with load and reset control bits.
+ * if      (reset[t] == 1) out[t+1] = 0
+ * else if (load[t] == 1)  out[t+1] = in[t]
+ * else if (inc[t] == 1)   out[t+1] = out[t] + 1  (integer addition)
+ * else                    out[t+1] = out[t]
+ */
+
+CHIP PC {
+    IN in[16],load,inc,reset;
+    OUT out[16];
+
+    PARTS:
+    Inc16(in=whold, out=p);
+
+    Mux16(a=whold, b=p, sel=inc, out=winc);
+    Mux16(a=winc, b=in, sel=load, out=wload);
+    Mux16(a=wload, b=false, sel=reset, out=dff);
+
+    DFF16(in=dff, out=out, out=whold);
+}

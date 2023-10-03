@@ -1,0 +1,35 @@
+// File: projects/p6/JumpLogic.hdl
+// This file is part of the CSE 390B
+// project series, adapted from the
+// Nand2Tetris project.
+
+/**
+ * Computes and outputs the load and inc signals
+ * for the program counter based on the given instruction
+ * and the given zr and ng signals output from the ALU.
+ * The jump specification and table in chapter
+ * 4.2.3 of the textbook will be very useful. 
+ */
+CHIP JumpLogic {
+    IN  instruction[16], // current instruction
+        aluzr,           // zr output from the ALU 
+        alung;           // ng output from the ALU
+
+    OUT load, // load signal to be used by the program counter
+        inc;  // inc signal to be used by the program counter
+
+    PARTS:
+    And(a=alung, b=instruction[2], out=jumplt);
+
+    And(a=aluzr, b=instruction[1], out=jumpeq);
+
+    Or(a=aluzr, b=alung, out=i1);
+    Not(in=i1, out=gt);
+    And(a=gt, b=instruction[0], out=jumpgt);
+
+    Or(a=jumplt, b=jumpeq, out=i2);
+    Or(a=i2, b=jumpgt, out=wouldjump);
+    And(a=instruction[15], b=wouldjump, out=jump, out=load);
+
+    Not(in=jump, out=inc);
+}

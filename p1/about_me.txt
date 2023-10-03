@@ -1,0 +1,2 @@
+Hi, my name is Ethan Hunter and I'm excited to complete nand2tetris.
+It sounds very interesting.
